@@ -1,11 +1,19 @@
 package org.TechnologyShop.TechnologyShopBackend.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "usuarios")
@@ -22,6 +30,11 @@ public class Usuario {
 	private String email;
 	@Column(nullable = false)
 	private String password;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="usuarioid", referencedColumnName="id")
+	List<Compra> compras= new ArrayList<Compra>();
+	
+
 	public Usuario(String nombre, String telefono, String email, String password) {
 		this.nombre = nombre;
 		this.telefono = telefono;
@@ -57,6 +70,11 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public List<Compra> getCompras() {
+		return compras;
+	}
+	
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", telefono=" + telefono + ", email=" + email
