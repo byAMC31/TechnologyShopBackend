@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.TechnologyShop.TechnologyShopBackend.Repository.UsuariosRepository;
 import org.TechnologyShop.TechnologyShopBackend.dto.ChangePassword;
+import org.TechnologyShop.TechnologyShopBackend.dto.UserLogin;
 import org.TechnologyShop.TechnologyShopBackend.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,5 +62,16 @@ public class UsuarioService {
 			}
 		}
 		return null;
+	}
+
+	public boolean validateUser(UserLogin user) {
+		Optional<Usuario> usr = usuariosRepository.findByEmail(user.getEmail());
+		if (usr.isPresent()) {
+			Usuario usuario = usr.get();
+			if (user.getPassword().equals(usuario.getPassword())) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
