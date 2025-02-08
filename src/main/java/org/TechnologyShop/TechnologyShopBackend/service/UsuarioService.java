@@ -32,6 +32,13 @@ public class UsuarioService {
 		return null;
 	}
 	
+	
+	// Obtener 1 usuario por email
+	public Usuario getUserByEmail(String email) {
+	    return usuariosRepository.findByEmail(email).orElse(null); 
+	}
+
+
 	// Borrar usuario
 	public Usuario delUser(Long id) {
 		Usuario usr = getUser(id);
