@@ -52,7 +52,7 @@ public class CompraService {
 	
 	public Compra addCompra(Compra compra) {
 	    // Verifica si ya existe una compra (mismo usuario y fecha)
-	    Optional<Compra> compraExistente = comprasRepository.findByFecha(compra.getFecha());
+	    Optional<Compra> compraExistente = comprasRepository.findByFechaAndUsuarioid(compra.getFecha(), compra.getUsuarioid());
 	    if (compraExistente.isPresent()) {
 	        throw new IllegalArgumentException("La compra ya existe para este usuario en esta fecha.");
 	    }

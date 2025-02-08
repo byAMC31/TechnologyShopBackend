@@ -30,16 +30,19 @@ public class Usuario {
 	private String email;
 	@Column(nullable = false)
 	private String password;
+	@Column(nullable = false)
+	private String tipo;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="usuarioid", referencedColumnName="id")
 	List<Compra> compras= new ArrayList<Compra>();
 	
 
-	public Usuario(String nombre, String telefono, String email, String password) {
+	public Usuario(String nombre, String telefono, String email, String password, String tipo) {
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.email = email;
 		this.password = password;
+		this.tipo = tipo;
 	}
 	public Usuario() {
 	}
@@ -71,13 +74,24 @@ public class Usuario {
 		this.password = password;
 	}
 	
+	
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
 	public List<Compra> getCompras() {
 		return compras;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", telefono=" + telefono + ", email=" + email
-				+ ", password=" + password + "]";
+				+ ", password=" + password + ", tipo=" + tipo + ", compras=" + compras + "]";
 	}
+
+	
 }

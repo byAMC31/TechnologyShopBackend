@@ -1,10 +1,16 @@
 package org.TechnologyShop.TechnologyShopBackend.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +31,11 @@ public class Producto {
 	@Column(nullable=false)
 	private String categoria;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="producto_id", referencedColumnName="id") //productoId
+	private List<DetalleDeCompra> detalleDeCompra = new ArrayList<>();
+	
+	
 	
 	public Producto(String nombre, String descripcion, String imagen, Double precio, String categoria) {
 		this.nombre = nombre;
@@ -36,7 +47,11 @@ public class Producto {
 	
 	public Producto() {
 	}
-
+	
+	public List<DetalleDeCompra> getDetalleDeCompra() {
+		return detalleDeCompra;
+	}
+	
 	public Long getId() {
 		return id;
 	}
