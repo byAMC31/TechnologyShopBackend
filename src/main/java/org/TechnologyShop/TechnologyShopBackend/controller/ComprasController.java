@@ -3,7 +3,10 @@ package org.TechnologyShop.TechnologyShopBackend.controller;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.TechnologyShop.TechnologyShopBackend.Repository.ProductosRepository;
 import org.TechnologyShop.TechnologyShopBackend.model.Compra;
+import org.TechnologyShop.TechnologyShopBackend.model.DetalleDeCompra;
+import org.TechnologyShop.TechnologyShopBackend.model.Producto;
 import org.TechnologyShop.TechnologyShopBackend.service.CompraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,7 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 //http:/localhost:8080/api/compras/
 @RequestMapping(path = "/api/compras/")
 public class ComprasController {
-
+	@Autowired
+	private ProductosRepository productosRepository;  
+	 
 	private final CompraService compraService;
 
 	@Autowired
@@ -55,11 +60,28 @@ public class ComprasController {
 
 	
 	
+
 	// Método para crear una compra
 	@PostMapping
 	public Compra addCompra(@RequestBody Compra compra) {
-		return compraService.addCompra(compra);
-	}// addCompra
+	    if (compra.getDetalles() != null) {
+	        for (DetalleDeCompra detalle : compra.getDetalles()) {
+	            if (detalle.getProductoId() != null) {
+	                // Buscar el Producto por el ID que viene en el JSON
+	                Producto producto = productosRepository.findById(detalle.getProductoId())
+	                        .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+	                detalle.setProducto(producto);  // Asigna el objeto Producto al detalle
+	            } else {
+	                throw new RuntimeException("El ID del producto no puede ser nulo");
+	            }
+	            detalle.setCompra(compra);  // Asigna la compra a cada detalle
+	        }
+	    } else {
+	        throw new RuntimeException("La compra debe tener al menos un detalle.");
+	    }
+	    return compraService.addCompra(compra);
+	}
+
 
 	
 	

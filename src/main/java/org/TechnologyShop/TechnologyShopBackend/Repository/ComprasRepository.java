@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ComprasRepository extends JpaRepository<Compra, Long>{
 	
-	Optional<Compra> findByFecha(LocalDateTime fecha);
 
+	public Optional<Compra> findByFechaAndUsuarioid(LocalDateTime fecha, Long usuarioid);
 
 }
