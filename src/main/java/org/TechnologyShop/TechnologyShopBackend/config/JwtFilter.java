@@ -32,20 +32,25 @@ public class JwtFilter extends GenericFilterBean {
 				|| "DELETE".equals(httpServletRequest.getMethod())) {
 			// Bearer
 			if (authHeader == null || !authHeader.startsWith("Bearer: ")) {
+				System.out.println("1. Invalid Token");
 				throw new ServletException("Invalid token 101");
 			}
 			// Validar token
 			String token = authHeader.substring(7);
-			try {
-				Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-				claims.forEach((key, value)-> System.out.println(key+" "+value));
-			} catch (SignatureException | MalformedJwtException | ExpiredJwtException e) {
-				System.out.println("2. Invalid token");
-				throw new ServletException("2. Invalid token");
-			} 
-		}
+			try{
+				Claims claims = Jwts.parser()
+						.setSigningKey(secret)
+						.parseClaimsJws(token)
+						.getBody();
+						claims.forEach(
+						(key, value)-> System.out.println("Key "+ key + "value" + value));
+		}catch (SignatureException | MalformedJwtException | ExpiredJwtException e) {
+			System.out.println("2. Invalid Token");
+		}//catch
+			}//if getMethod
 		chain.doFilter(request, response);
-	}
+	}//doFilter
+	
 	
 	
 }
