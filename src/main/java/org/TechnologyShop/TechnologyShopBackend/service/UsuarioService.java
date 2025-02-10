@@ -81,7 +81,7 @@ public class UsuarioService {
 		return user;
 	}
 
-	public boolean validateUser(Usuario user) {
+	public boolean validateUser(UserLogin user) {
 		Optional<Usuario> usr = usuariosRepository.findByEmail(user.getEmail());
 		if (usr.isPresent()) {
 			Usuario usuario = usr.get();
