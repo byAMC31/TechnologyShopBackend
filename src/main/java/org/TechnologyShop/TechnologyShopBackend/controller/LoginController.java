@@ -45,7 +45,7 @@ public class LoginController {
         }
         throw new ServletException("Nombre o contraseña inválidos.");
     }
-	
+	 
 	
 	
 	private String generateToken(String email) {

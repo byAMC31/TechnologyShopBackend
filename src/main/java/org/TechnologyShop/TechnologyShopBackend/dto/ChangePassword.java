@@ -2,28 +2,40 @@ package org.TechnologyShop.TechnologyShopBackend.dto;
 
 public class ChangePassword {
 	private String password;
-	private String newPassword;
+	private String npassword;
 	
-	public ChangePassword() {}
-	public ChangePassword(String email, String password, String newPassword) {
+	public ChangePassword(String password, String npassword) {
+		super();
 		this.password = password;
-		this.newPassword = newPassword;
+		this.npassword = npassword;
 	}
+
+	public ChangePassword() {
+	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getNewPassword() {
-		return newPassword;
+
+	public String getNpassword() {
+		return npassword;
 	}
-	public void setNewPassword(String newPassword) {
-		this.newPassword = newPassword;
+
+	public void setNpassword(String npassword) {
+		this.npassword = npassword;
 	}
+
 	@Override
 	public String toString() {
-		return "ChangePassword [password=" + password + ", newPassword=" + newPassword + "]";
+		return "ChangePassword [password=" + password + ", npassword=" + npassword + "]";
 	}
+
+
+	
+	
 	
 }

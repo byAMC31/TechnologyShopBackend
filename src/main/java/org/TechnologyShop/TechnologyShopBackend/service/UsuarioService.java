@@ -35,7 +35,7 @@ public class UsuarioService {
 		}
 		return null;
 	}
-	
+	 
 	
 	// Obtener 1 usuario por email
 	public Usuario getUserByEmail(String email) {
@@ -71,12 +71,11 @@ public class UsuarioService {
 			Usuario usuario = usuariosRepository.findById(id).get();
 			
 			if(encoder.matches(changePassword.getPassword(), usuario.getPassword())) {
-				usuario.setPassword(changePassword.getNewPassword());
+				usuario.setPassword(encoder.encode(changePassword.getNpassword()));
 				user = usuario;
 				usuariosRepository.save(usuario);
 			}
-			return user;
-			}
+		}
 		
 		return user;
 	}
@@ -84,8 +83,9 @@ public class UsuarioService {
 	public boolean validateUser(UserLogin user) {
 		Optional<Usuario> usr = usuariosRepository.findByEmail(user.getEmail());
 		if (usr.isPresent()) {
-			Usuario usuario = usr.get();
-			if (user.getPassword().equals(usuario.getPassword())) {
+			
+			Usuario tmpUser = usr.get();
+			if (encoder.matches(user.getPassword(), tmpUser.getPassword())) {
 				return true;
 			}
 		}
