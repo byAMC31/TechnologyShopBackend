@@ -1,19 +1,13 @@
 package org.TechnologyShop.TechnologyShopBackend.dto;
 
 public class ChangePassword {
-	private String email;
 	private String password;
 	private String newPassword;
+	
+	public ChangePassword() {}
 	public ChangePassword(String email, String password, String newPassword) {
-		this.email = email;
 		this.password = password;
 		this.newPassword = newPassword;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public String getPassword() {
 		return password;
@@ -29,7 +23,7 @@ public class ChangePassword {
 	}
 	@Override
 	public String toString() {
-		return "ChangePassword [email=" + email + ", password=" + password + ", newPassword=" + newPassword + "]";
+		return "ChangePassword [password=" + password + ", newPassword=" + newPassword + "]";
 	}
 	
 }

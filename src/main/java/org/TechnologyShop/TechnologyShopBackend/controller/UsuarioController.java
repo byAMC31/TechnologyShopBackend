@@ -51,8 +51,10 @@ public class UsuarioController {
 	}
 	
 	// Actualizar usuario
-	@PutMapping
-	public Usuario updateUser(@RequestBody ChangePassword new_pass) {
-		return usuarioService.updateUser(new_pass);
-	}
+	@PutMapping(path="{userId}")
+	public Usuario updateUsuario(@PathVariable("userId") Long id, 
+			@RequestBody ChangePassword changePassword){
+			return usuarioService.updateUser(id,changePassword);
+		}
+	
 }
