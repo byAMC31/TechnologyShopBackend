@@ -40,7 +40,7 @@ public class ComprasController {
 	
 	// Método para obtener las compras
 	@GetMapping
-	public List<Compra> getCompra() {
+	public List<Compra> getCompras() {
 		return compraService.getAllCompras();
 	}
 

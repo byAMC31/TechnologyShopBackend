@@ -8,11 +8,15 @@ import org.TechnologyShop.TechnologyShopBackend.dto.ChangePassword;
 import org.TechnologyShop.TechnologyShopBackend.dto.UserLogin;
 import org.TechnologyShop.TechnologyShopBackend.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioService {
 	private final UsuariosRepository usuariosRepository;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	@Autowired
 	public UsuarioService(UsuariosRepository usuariosRepository) {
@@ -49,29 +53,35 @@ public class UsuarioService {
 	}
 	
 	// Añadir usuario
-	public Usuario addUser(Usuario usr) {
-		Optional<Usuario> user = usuariosRepository.findByEmail(usr.getEmail());
-		if (user.isEmpty()) {
-			return usuariosRepository.save(usr);
+	public Usuario addUser(Usuario usuario) {
+		Optional<Usuario> user = usuariosRepository.findByEmail(usuario.getEmail());
+		if(user.isEmpty()) {
+			usuario.setPassword(encoder.encode(usuario.getPassword()));
+			return usuariosRepository.save(usuario);
+		}else {
+			return null;
 		}
-		return null;
 	}
 	
 	// Actualizar usuario
-	public Usuario updateUser(ChangePassword new_pass) {
-		Optional<Usuario> user = usuariosRepository.findByEmail(new_pass.getEmail());
-		if (user.isPresent()) {
-			Usuario usr = user.get();
-			if (usr.getPassword().equals(new_pass.getPassword())) {
-				usr.setPassword(new_pass.getNewPassword());
-				usuariosRepository.save(usr);
-				return usr;
+	public Usuario updateUser(Long id, ChangePassword changePassword) {
+		Usuario user = null;
+		
+		if(usuariosRepository.existsById(id)){
+			Usuario usuario = usuariosRepository.findById(id).get();
+			
+			if(encoder.matches(changePassword.getPassword(), usuario.getPassword())) {
+				usuario.setPassword(changePassword.getNewPassword());
+				user = usuario;
+				usuariosRepository.save(usuario);
 			}
-		}
-		return null;
+			return user;
+			}
+		
+		return user;
 	}
 
-	public boolean validateUser(UserLogin user) {
+	public boolean validateUser(Usuario user) {
 		Optional<Usuario> usr = usuariosRepository.findByEmail(user.getEmail());
 		if (usr.isPresent()) {
 			Usuario usuario = usr.get();

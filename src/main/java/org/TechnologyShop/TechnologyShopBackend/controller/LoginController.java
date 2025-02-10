@@ -28,7 +28,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @RequestMapping(path="/api/login/")
 public class LoginController {
 	private final UsuarioService usuarioService;
-	@Autowired
+	
+	
 	public LoginController(UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
 	}
@@ -50,6 +51,8 @@ public class LoginController {
 	private String generateToken(String email) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.HOUR, 1); // El usuario tendra 1 hora logeado.	
+		
+		
 		return Jwts.builder().setSubject(email).claim("role", "user")
 				.setIssuedAt(new Date())
 				.signWith(SignatureAlgorithm.HS256, JwtFilter.secret)
