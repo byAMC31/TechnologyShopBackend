@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  min-height: 600px;
+  background-color: #F1F4F8;
+}
+
+.hero_img {
+  width: 100%;
+}
+
+/* Animaciones */
+[data-animation="fade"] {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Salida suave */
+  --opacity: 1;
+  --transform: translateX(0);
+}
+
+[data-animation="show"] {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  --opacity: 1;
+  --transform: scale(1);
+}
+
+[data-animation="up"] {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  --opacity: 1;
+  --transform: translateY(0);
+}
+
+/* Aplicar transición en la clase dinámica */
+.unset {
+  transition: opacity 0.6s ease-in, transform 0.6s ease-in; /* Animar ambas propiedades */
+  opacity: var(--opacity);
+  transform: var(--transform);
+}
+
+.card-img-top {
+    padding-top: 10px; 
+    height: 150px;
+    width: 150px;
+    border-radius: 50%; /*Hace que la imagen sea circular */
+    object-fit: cover; /*Ajusta la imagen para que se recorte adecuadamente */
+    display: block; /*Asegura que la imagen sea tratada como un bloque */
+    margin: 0 auto; 
+    transition: transform 0.5s ease; /*Transición para animaciones */
+    border: 1px solid #007BFF;
+}
+
+.card-img-top:hover {
+    transform: scale(1.1); /*Aumenta el tamaño al pasar el cursor */
+}
+
+.card {
+    transition: box-shadow 0.5s ease;
+    box-shadow: 0 6px 15px rgba(47, 255, 245, 0.3);    border: none;
+    overflow: hidden; /*vita que los elementos se desborden */
+    border-radius: 24px;
+
+}
+
+.card-img-top {
+    padding-top: 0px; 
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;/*asegura que la imagen cubra todo el área disponible del contenedor*/
+    display: block;
+    margin-top:10px;
+
+    transition: transform 0.5s ease;
+}
+
+.card:hover {
+  box-shadow: 0 12px 20px rgba(58, 127, 255, 0.5); 
+  transform: translateY(-5px); /*Eleva la tarjeta para darle un efecto de profundidad */
+}
+
+.card-title {
+    margin-top: 10px;
+    font-size: 1.25rem;
+}
+
+.card-img-top.hero_img {
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.card-img-top.hero_img.unset {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* texto de ¿Quiénes somos? */
+.container h1, .container h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .container p {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      margin: 20px auto;
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      margin: 10px auto;
+      padding: 5px;
+    }
+  }

@@ -1,0 +1,218 @@
+body {
+    background-color: #F1F4F8;
+}
+
+
+.card_producto {
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el espacio uniformemente */
+    align-items: center; /* Centra los elementos horizontalmente */
+    height: 550px; /* Asegura que todas las tarjetas tengan la misma altura */
+    max-width: 320px; /* Limita el ancho de cada tarjeta */
+    margin: 10px; /* Espaciado entre las tarjetas */
+    padding: 20px; /* Espaciado interno */
+    box-sizing: border-box;
+}
+
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Asegura que las secciones ocupen el espacio proporcionalmente */
+    text-align: center;
+    width: 100%;
+}
+
+
+/* Contenedor de la imagen */
+.card_img_wrapper {
+    width: 300px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden; /* Oculta partes de la imagen que no se ajusten */
+    margin-top: 30px;
+    border: 2px solid #ddd;
+    box-sizing: border-box;
+}
+
+/* Imagen dentro del contenedor */
+.card_img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: contain;
+    background-color: #ffffff;
+}
+
+/* Letras dentro del card */
+.product_name {
+    /* color: rgb(66, 109, 252); */
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center; /* Centra el texto */
+    margin: 10px 0; /* Espaciado */
+    line-height: 1.2; /* Altura de línea */
+    max-height: 2.4em; /* 1.2 (line-height) * 2 líneas */
+    overflow: hidden; /* Oculta el contenido que exceda las dos líneas */
+    display: -webkit-box; /* Se utiliza para habilitar el modo de recorte en bloques */
+    -webkit-box-orient: vertical; /* Configura la orientación del contenedor */
+    line-clamp: 2; /* Limita a 2 líneas */
+    height: 60px; 
+}
+
+.product_description {
+    /* color: #8D6969; Color más claro que el nombre */
+    font-size: 16px; /* Tamaño más pequeño que el nombre */
+    font-weight: 400; 
+    text-align: center; /* Centra el texto */
+    margin: 5px 0; 
+    font-style: italic; /* Hace la descripción cursiva */
+    line-height: 1.5; /* Altura de línea */
+    max-height: 4.5em; /* Altura máxima para 3 líneas */
+    overflow: hidden; /* Oculta el contenido que exceda las tres líneas */
+    display: -webkit-box; /* Habilita el modo de recorte en bloques */
+    -webkit-box-orient: vertical; /* Configura la orientación del contenedor */
+    -webkit-line-clamp: 3; /* Limita a 3 líneas */
+    height: 70px; 
+}
+
+
+
+.product_price {
+    color: #05b462;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center; /* Centra el texto */
+    margin: 10px 0;
+    height: 20px;
+}
+
+/* Estilo para el botón */
+.button_content{
+    display: flex;
+    justify-content: center; /* Centra el botón horizontalmente */
+    align-items: center; /* Centra el botón verticalmente si es necesario */
+}
+
+.product_button {
+    background-color: #FF0000;
+    color: white;
+    font-size: 16px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+/* Efecto hover */
+.product_button:hover {
+    background-color: #D40000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto activo */
+.product_button:active {
+    background-color: #B30000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+/* buscador de productos */
+.input-group {
+    position: relative;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.input-group .form-control {
+    border-right: none; /* Elimina el borde derecho */
+    border-radius: 25px 0 0 25px; /* Redondea solo la parte izquierda */
+    padding-right: 40px; /* Deja espacio para el botón de borrar */
+}
+
+.input-group .btn {
+    border-left: none; /* Elimina el borde izquierdo */
+    border-radius: 0 25px 25px 0; /* Redondea solo la parte derecha */
+}
+
+
+#clearButton {
+    background-color: white; /* Fondo blanco */
+    border-left: none; /* Elimina el borde izquierdo */
+    border-right: none; /* Elimina el borde derecho */
+    border-top: 0.7px solid #cfcfcf; /* Borde superior */
+    border-bottom: 0.7px solid #cfcfcf; /* Borde inferior */
+}
+
+
+#clearButton i {
+    color: red; /* Ícono de color rojo */
+}
+
+
+.btn-white {
+    background-color: white !important;
+    border: 0px solid #ccc; 
+}
+
+.search-btn i {
+    color: rgb(100, 99, 99) !important;
+}
+
+.star {
+    color: #FFD700; /* Color amarillo para las estrellas */
+    font-size: 20px; /* Tamaño de las estrellas */
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.6); 
+}
+
+
+/* boton de filtrar productos */
+.custom-filter-btn {
+    background: linear-gradient(#00fff2, #4900FF);
+    color: white; /* Color del texto siempre blanco */
+    border: none;
+    border-radius: 10px; /* Bordes más redondeados */
+    font-size: 14px; /* Tamaño de fuente ligeramente más grande */
+    font-weight: 600; /* Texto en negrita */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    outline: none; /* Eliminar el borde de enfoque por defecto */
+}
+
+.custom-filter-btn:hover {
+    transform: scale(1.05);
+    color: white; 
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada al pasar el mouse */
+}
+
+.custom-filter-btn:active {
+    transform: scale(0.98); /* Efecto de "presionado" */
+    color: white; 
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); /* Sombra más pequeña al hacer clic */
+}
+
+.custom-filter-btn:focus {
+    color: white; 
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3); /* Borde de enfoque sutil */
+}
+
+
+.new-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f44336; /* Rojo brillante */
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 12px;
+    z-index: 10;
+}
